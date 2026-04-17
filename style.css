@@ -41,6 +41,14 @@ body {
   letter-spacing: 0.25em;
   text-transform: uppercase;
 }
+.logo-img {
+  height: 28px;
+  width: auto;
+  display: block;
+  /* white logo needs invert on light bg, none on dark */
+  filter: invert(1);
+}
+body.is-yes .logo-img { filter: invert(0); }
 .tagline-header {
   font-family: var(--serif);
   font-style: italic;
