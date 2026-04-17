@@ -166,45 +166,114 @@ main { flex: 1; }
   justify-content: space-between;
 }
 
+.schedule {
+  flex: 1;
+}
+.schedule-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 2rem;
+}
 .schedule-label {
   font-size: 0.6rem;
   font-weight: 500;
   letter-spacing: 0.25em;
   color: var(--mid);
-  margin-bottom: 1.5rem;
 }
+.schedule-date {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--mid);
+}
+
+/* Timeline */
 .schedule-items {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  position: relative;
+  padding-left: 1.5rem;
 }
+.schedule-items::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: var(--border);
+}
+
 .schedule-row {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  padding: 1rem 0;
-  border-top: 1px solid var(--border);
+  position: relative;
+  padding: 0 0 2rem 1.5rem;
 }
-.schedule-row:last-child { border-bottom: 1px solid var(--border); }
+.schedule-row:last-child { padding-bottom: 0; }
+
+/* Timeline dot */
+.schedule-row::before {
+  content: '';
+  position: absolute;
+  left: -1.5rem;
+  top: 7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--border);
+  border: 1.5px solid var(--border);
+  transition: background 0.3s, border-color 0.3s;
+}
+
 .schedule-time {
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   font-weight: 500;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   color: var(--mid);
+  margin-bottom: 0.35rem;
+  display: block;
 }
 .schedule-event {
   font-family: var(--serif);
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   font-weight: 300;
   line-height: 1.2;
+  display: block;
 }
-.schedule-row--beer .schedule-time { color: var(--gold); }
+
+/* Beer slot */
+.schedule-row--beer {
+  background: var(--black);
+  color: var(--white);
+  margin-left: -1.5rem;
+  padding: 1.1rem 1.25rem 1.1rem 3rem;
+  border-radius: 2px;
+}
+.schedule-row--beer::before {
+  left: 0.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--gold);
+  border-color: var(--gold);
+  width: 9px;
+  height: 9px;
+  box-shadow: 0 0 0 3px rgba(184,147,90,0.2);
+}
+.schedule-row--beer .schedule-time {
+  color: var(--gold);
+}
 .schedule-row--beer .schedule-event {
   font-weight: 600;
   font-style: italic;
-  color: var(--black);
+  color: var(--white);
+  font-size: 1.45rem;
 }
-body.is-yes .schedule-row--beer .schedule-event { color: var(--white); }
+
+body.is-yes .schedule-row--beer {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+}
 
 /* Verdict badge */
 .badge-wrap {

@@ -20,6 +20,10 @@ function updateDay() {
   const now = new Date();
   const day = DAYS_NL[now.getDay()].toUpperCase();
   document.getElementById('currentDay').textContent = `${day} · AMSTERDAM`;
+  const dateEl = document.getElementById('scheduleDate');
+  if (dateEl) {
+    dateEl.textContent = now.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long' });
+  }
 }
 
 // ── Beer emoji rain ──
