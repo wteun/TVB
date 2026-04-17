@@ -1,13 +1,11 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --black:   #0d0d0d;
-  --white:   #f5f0eb;
-  --mid:     #6b6560;
-  --border:  #d6d0c8;
+  --black:   #1c1c1c;
+  --white:   #f2f2f2;
+  --mid:     #727272;
+  --border:  #d2d2d2;
   --gold:    #b8935a;
-  --yes-bg:  #0d0d0d;
-  --no-bg:   #f5f0eb;
   --serif:   'Cormorant Garamond', Georgia, serif;
   --sans:    'Inter', system-ui, sans-serif;
 }
@@ -299,21 +297,44 @@ main { flex: 1; }
 
 /* ── YES body state ── */
 body.is-yes {
-  background: var(--black);
-  color: var(--white);
-  --border: #2a2a2a;
-  --mid: #888;
+  background: #2a2a2a;
+  color: #f2f2f2;
+  --black:  #f2f2f2;
+  --white:  #2a2a2a;
+  --border: #444444;
+  --mid:    #999999;
 }
 body.is-yes .cta-btn {
-  background: var(--white);
-  color: var(--black);
-  border-color: var(--white);
+  background: #f2f2f2;
+  color: #2a2a2a;
+  border-color: #f2f2f2;
 }
 body.is-yes .cta-btn:hover {
   background: transparent;
-  color: var(--white);
+  color: #f2f2f2;
 }
-body.is-yes .divider { background: var(--white); }
+body.is-yes .divider { background: #f2f2f2; }
+
+/* ── Beer emoji rain ── */
+.beer-rain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 200;
+  overflow: hidden;
+}
+.beer-drop {
+  position: absolute;
+  top: -80px;
+  font-size: 2rem;
+  animation: beerFall linear forwards;
+  user-select: none;
+}
+@keyframes beerFall {
+  0%   { transform: translateY(0) rotate(0deg);   opacity: 1; }
+  80%  { opacity: 1; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
 
 /* ── Mobile ── */
 @media (max-width: 768px) {

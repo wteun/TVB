@@ -10,32 +10,9 @@ const YES_MESSAGES = [
   { answer: "Ja. Vanzelfsprekend.", sub: "Waarom vraagt u dit eigenlijk nog?" },
 ];
 
-const NO_MESSAGES = [
-  { answer: "Nog niet. Bijna.", sub: "De klok tikt. Het bier wacht." },
-  { answer: "Helaas. Nog niet.", sub: "Probeer het over vijf minuten opnieuw." },
-  { answer: "Nee. Maar vlak bij.", sub: "Uw geduld wordt binnenkort beloond." },
-  { answer: "Technisch gezien: nee.", sub: "Maar wie houdt zich aan de techniek?" },
-  { answer: "Nog niet.", sub: "Frustreer uzelf. Check dan opnieuw." },
-  { answer: "De tijd is er niet.", sub: "Helaas. Dat kan veranderen." },
-];
-
-const ALWAYS_YES_HOURS = new Set([12, 13, 17, 18, 19, 20, 21, 22]);
-const WEEKEND_YES_FROM = 11;
-
 const DAYS_NL = ['Zondag','Maandag','Dinsdag','Woensdag','Donderdag','Vrijdag','Zaterdag'];
 
-function isBeerTime() {
-  const now = new Date();
-  const h   = now.getHours();
-  const m   = now.getMinutes();
-  const day = now.getDay();
-  const isWeekend = day === 0 || day === 6;
-  if (isWeekend && h >= WEEKEND_YES_FROM) return true;
-  if (ALWAYS_YES_HOURS.has(h)) return true;
-  if (!isWeekend && h === 16 && m >= 30) return Math.random() > 0.4;
-  if (Math.random() < 0.05) return true;
-  return false;
-}
+function isBeerTime() { return true; }
 
 function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
@@ -44,12 +21,37 @@ function updateClock() {
   const pad = n => String(n).padStart(2, '0');
   document.getElementById('clock').textContent =
     `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
-
-  // Update eyebrow date line
   const day = DAYS_NL[now.getDay()].toUpperCase();
   document.getElementById('currentDay').textContent = `${day} · AMSTERDAM`;
 }
 
+// ── Beer emoji rain ──
+const BEER_EMOJIS = ['🍺','🍺','🍺','🍻','🍺','🍺','🍺','🍻','🥂'];
+const beerRain = document.getElementById('beerRain');
+let rainTimer = null;
+
+function launchBeerRain() {
+  beerRain.innerHTML = '';
+  clearTimeout(rainTimer);
+
+  const count = 40;
+  for (let i = 0; i < count; i++) {
+    setTimeout(() => {
+      const el = document.createElement('span');
+      el.className = 'beer-drop';
+      el.textContent = BEER_EMOJIS[Math.floor(Math.random() * BEER_EMOJIS.length)];
+      el.style.left     = `${Math.random() * 100}vw`;
+      el.style.fontSize = `${1.2 + Math.random() * 2}rem`;
+      const dur = 2.2 + Math.random() * 2.5;
+      el.style.animationDuration = `${dur}s`;
+      el.style.animationDelay   = '0s';
+      beerRain.appendChild(el);
+      setTimeout(() => el.remove(), dur * 1000 + 100);
+    }, i * 60);
+  }
+}
+
+// ── Main ──
 const answerEl  = document.getElementById('answerText');
 const subEl     = document.getElementById('answerSub');
 const badgeEl   = document.getElementById('verdictBadge');
@@ -58,33 +60,30 @@ const scanLine  = document.getElementById('scanLine');
 
 function checkBeer() {
   const yes = isBeerTime();
-  const msg = yes ? pick(YES_MESSAGES) : pick(NO_MESSAGES);
+  const msg = pick(YES_MESSAGES);
 
-  // Reset
   answerEl.classList.remove('show', 'yes', 'no');
   subEl.classList.remove('show');
   badgeEl.classList.remove('yes', 'no');
   void answerEl.offsetWidth;
 
-  // Set content
-  answerEl.textContent = msg.answer;
-  subEl.textContent    = msg.sub;
-  badgeText.textContent = yes ? 'Ja,\nnu.' : 'Nog\nniet.';
+  answerEl.textContent  = msg.answer;
+  subEl.textContent     = msg.sub;
+  badgeText.textContent = 'Ja,\nnu.';
 
-  // Apply classes
   requestAnimationFrame(() => {
-    answerEl.classList.add('show', yes ? 'yes' : 'no');
+    answerEl.classList.add('show', 'yes');
     subEl.classList.add('show');
-    badgeEl.classList.add(yes ? 'yes' : 'no');
+    badgeEl.classList.add('yes');
   });
 
-  // Body theme
-  document.body.classList.toggle('is-yes', yes);
+  document.body.classList.add('is-yes');
 
-  // Scan flash
   scanLine.classList.remove('flash');
   void scanLine.offsetWidth;
   scanLine.classList.add('flash');
+
+  launchBeerRain();
 }
 
 document.getElementById('checkBtn').addEventListener('click', checkBeer);
