@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Is het Biertijd? — Just Bier</title>
+  <title>Is It Beer Time? — Just Beer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
@@ -12,17 +12,17 @@
   <header class="site-header">
     <div class="header-inner">
       <img src="logo.png" alt="Just Brands" class="logo-img" onerror="this.style.display='none';document.getElementById('logoText').style.display='inline'" />
-      <span class="logo" id="logoText" style="display:none">JUST BIER</span>
-      <span class="tagline-header">Est. Elk Uur</span>
+      <span class="logo" id="logoText" style="display:none">JUST BEER</span>
+      <span class="tagline-header">Est. Every Hour</span>
     </div>
   </header>
 
   <main>
     <section class="hero">
       <div class="hero-left">
-        <p class="eyebrow" id="currentDay">VRIJDAG · AMSTERDAM</p>
+        <p class="eyebrow" id="currentDay">FRIDAY · AMSTERDAM</p>
         <h1 class="headline" id="mainHeadline">
-          Is het<br /><em>al tijd</em><br />voor een<br />Bier?
+          Is it<br /><em>already time</em><br />for a<br />Beer?
         </h1>
         <div class="divider"></div>
         <div class="answer-block" id="answerBlock">
@@ -30,7 +30,7 @@
           <p class="answer-sub" id="answerSub"></p>
         </div>
         <button class="cta-btn" id="checkBtn">
-          <span>CONTROLEER</span>
+          <span>CHECK NOW</span>
           <svg width="18" height="10" viewBox="0 0 18 10" fill="none"><path d="M1 5h16M13 1l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
       </div>
@@ -38,21 +38,21 @@
       <div class="hero-right">
         <div class="schedule">
           <div class="schedule-header">
-            <p class="schedule-label">DAGPLANNING</p>
+            <p class="schedule-label">TODAY'S SCHEDULE</p>
             <p class="schedule-date" id="scheduleDate"></p>
           </div>
           <div class="schedule-items">
-            <div class="schedule-row">
+            <div class="schedule-row" data-slot="lunch">
               <span class="schedule-time">12:00 – 12:30</span>
               <span class="schedule-event">Lunch</span>
             </div>
-            <div class="schedule-row">
+            <div class="schedule-row" data-slot="pingpong">
               <span class="schedule-time">12:30 – 13:00</span>
               <span class="schedule-event">Ping pong</span>
             </div>
-            <div class="schedule-row schedule-row--beer">
+            <div class="schedule-row schedule-row--beer" data-slot="beer">
               <span class="schedule-time">15:00 – 00:00</span>
-              <span class="schedule-event">Tijd voor meerdere biertjes 🍺🍺🍺</span>
+              <span class="schedule-event">Time for several beers 🍺🍺🍺</span>
             </div>
           </div>
         </div>
@@ -65,38 +65,40 @@
     </section>
 
     <section class="strip" id="strip">
-      <span>PROOST</span><span>·</span>
       <span>CHEERS</span><span>·</span>
+      <span>PROOST</span><span>·</span>
       <span>PROST</span><span>·</span>
       <span>SANTÉ</span><span>·</span>
       <span>SALUD</span><span>·</span>
-      <span>PROOST</span><span>·</span>
+      <span>KANPAI</span><span>·</span>
       <span>CHEERS</span><span>·</span>
+      <span>PROOST</span><span>·</span>
       <span>PROST</span><span>·</span>
-      <span>SALUD</span><span>·</span>
       <span>SANTÉ</span><span>·</span>
+      <span>SALUD</span><span>·</span>
+      <span>KANPAI</span><span>·</span>
     </section>
 
     <section class="facts">
       <div class="fact-item">
         <p class="fact-num">100%</p>
-        <p class="fact-desc">Wetenschappelijk<br />verantwoord</p>
+        <p class="fact-desc">Scientifically<br />verified</p>
       </div>
       <div class="fact-divider"></div>
       <div class="fact-item">
         <p class="fact-num">24/7</p>
-        <p class="fact-desc">Bier-monitoring<br />actief</p>
+        <p class="fact-desc">Beer monitoring<br />active</p>
       </div>
       <div class="fact-divider"></div>
       <div class="fact-item">
         <p class="fact-num">0</p>
-        <p class="fact-desc">Excuses<br />nodig</p>
+        <p class="fact-desc">Excuses<br />required</p>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>© JUST BIER — De meest serieuze biertijdcontroleur ter wereld.</p>
+    <p>© JUST BEER — The world's most serious beer-time checker.</p>
   </footer>
 
   <div class="scan-line" id="scanLine"></div>
