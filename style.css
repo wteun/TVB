@@ -166,24 +166,45 @@ main { flex: 1; }
   justify-content: space-between;
 }
 
-.clock-display {}
-.clock-label {
+.schedule-label {
   font-size: 0.6rem;
   font-weight: 500;
   letter-spacing: 0.25em;
   color: var(--mid);
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
-.clock-time {
+.schedule-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.schedule-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--border);
+}
+.schedule-row:last-child { border-bottom: 1px solid var(--border); }
+.schedule-time {
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: var(--mid);
+}
+.schedule-event {
   font-family: var(--serif);
+  font-size: 1.25rem;
   font-weight: 300;
-  font-size: clamp(3rem, 6vw, 6rem);
-  letter-spacing: 0.04em;
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
-  color: var(--black);
-  transition: color 0.4s;
+  line-height: 1.2;
 }
+.schedule-row--beer .schedule-time { color: var(--gold); }
+.schedule-row--beer .schedule-event {
+  font-weight: 600;
+  font-style: italic;
+  color: var(--black);
+}
+body.is-yes .schedule-row--beer .schedule-event { color: var(--white); }
 
 /* Verdict badge */
 .badge-wrap {

@@ -16,11 +16,8 @@ function isBeerTime() { return true; }
 
 function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
-function updateClock() {
+function updateDay() {
   const now = new Date();
-  const pad = n => String(n).padStart(2, '0');
-  document.getElementById('clock').textContent =
-    `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
   const day = DAYS_NL[now.getDay()].toUpperCase();
   document.getElementById('currentDay').textContent = `${day} · AMSTERDAM`;
 }
@@ -88,7 +85,6 @@ function checkBeer() {
 
 document.getElementById('checkBtn').addEventListener('click', checkBeer);
 
-setInterval(updateClock, 1000);
-updateClock();
+updateDay();
 
 window.addEventListener('load', () => setTimeout(checkBeer, 300));
