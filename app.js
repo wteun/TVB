@@ -303,10 +303,6 @@ function judgeCase() {
   void caseResp.offsetWidth;
   caseResp.classList.add('visible');
 
-  if (document.getElementById('postToWall')?.checked) {
-    window.postToWall?.(caseInput.value.trim(), verdict.text, verdict.emoji);
-  }
-
   showHeroResult(true, { answer: verdict.text, sub: verdict.reason });
 }
 

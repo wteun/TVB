@@ -99,16 +99,10 @@
           <textarea id="caseInput" class="case-input" placeholder="e.g. I sat through a 3-hour retrospective about why our retrospectives are too long..." maxlength="280" rows="4"></textarea>
           <div class="case-actions">
             <span class="char-count" id="charCount">0 / 280</span>
-            <div class="case-actions-right">
-              <label class="wall-toggle">
-                <input type="checkbox" id="postToWall" checked />
-                <span>Post to wall</span>
-              </label>
-              <button class="cta-btn" id="caseSubmit">
-                <span>SUBMIT CASE</span>
-                <svg width="18" height="10" viewBox="0 0 18 10" fill="none"><path d="M1 5h16M13 1l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-            </div>
+            <button class="cta-btn" id="caseSubmit">
+              <span>SUBMIT CASE</span>
+              <svg width="18" height="10" viewBox="0 0 18 10" fill="none"><path d="M1 5h16M13 1l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
           </div>
         </div>
         <div class="case-response" id="caseResponse">
@@ -120,36 +114,6 @@
           <p class="case-verdict-reason" id="caseReason"></p>
         </div>
       </div>
-    </section>
-
-    <!-- Beer Wall -->
-    <section class="wall-section">
-      <div class="wall-header">
-        <div class="wall-header-left">
-          <p class="section-eyebrow">THE BEER WALL</p>
-          <h2 class="wall-headline">What's everyone's<br /><em>excuse today?</em></h2>
-        </div>
-        <div class="wall-header-right">
-          <div class="live-badge" id="liveIndicator">
-            <span class="live-dot"></span>
-            <span>LIVE</span>
-          </div>
-          <p class="wall-count-label"><span id="wallCount">0</span> excuses filed</p>
-        </div>
-      </div>
-
-      <!-- Setup notice (shown when Firebase not configured) -->
-      <div class="wall-setup" id="wallSetup" style="display:none">
-        <p class="wall-setup-text">
-          🔧 Fill in <code>firebase-config.js</code> with your Firebase project details to activate the live wall.
-        </p>
-      </div>
-
-      <!-- Live message list -->
-      <div class="wall-list" id="wallList"></div>
-      <p class="wall-empty" id="wallEmpty" style="display:none">
-        No excuses yet. Be the first to make your case.
-      </p>
     </section>
 
     <!-- Marquee strip -->
@@ -194,11 +158,6 @@
   <div class="scan-line" id="scanLine"></div>
   <div class="beer-rain" id="beerRain"></div>
 
-  <!-- Firebase SDK (compat — no bundler needed) -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
-  <script src="firebase-config.js"></script>
   <script src="app.js"></script>
-  <script src="wall.js"></script>
 </body>
 </html>
