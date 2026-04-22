@@ -371,6 +371,239 @@ main { flex: 1; }
 }
 .verdict-badge.yes span { color: #f2f2f2; }
 
+/* ── Instant verdict buttons ── */
+.instant-section {
+  border-bottom: 1px solid var(--border);
+}
+.instant-inner {
+  padding: 3.5rem 3rem;
+}
+.section-eyebrow {
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  color: var(--mid);
+  margin-bottom: 0.5rem;
+}
+.section-sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: var(--mid);
+  margin-bottom: 2rem;
+}
+.fun-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+}
+.fun-btn {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--black);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 0.6rem 1.1rem;
+  cursor: pointer;
+  transition: background 0.18s, border-color 0.18s, color 0.18s, transform 0.15s;
+}
+.fun-btn:hover {
+  background: var(--black);
+  border-color: var(--black);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+.fun-btn.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #1c1c1c;
+}
+@keyframes wiggle {
+  0%,100% { transform: rotate(0deg) translateY(-2px); }
+  20%     { transform: rotate(-4deg) translateY(-3px); }
+  40%     { transform: rotate(4deg)  translateY(-3px); }
+  60%     { transform: rotate(-3deg) translateY(-2px); }
+  80%     { transform: rotate(3deg)  translateY(-2px); }
+}
+.fun-btn.wiggle { animation: wiggle 0.4s ease; }
+
+.instant-response {
+  min-height: 4rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s, transform 0.4s;
+  border-left: 2px solid var(--gold);
+  padding-left: 1.25rem;
+}
+.instant-response.visible { opacity: 1; transform: translateY(0); }
+.instant-answer {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 0.3rem;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.instant-answer.show { opacity: 1; transform: translateY(0); }
+.instant-sub {
+  font-size: 0.85rem;
+  color: var(--mid);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.35s 0.1s ease, transform 0.35s 0.1s ease;
+}
+.instant-sub.show { opacity: 1; transform: translateY(0); }
+
+/* ── Make your case ── */
+.case-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--border);
+}
+.case-left {
+  padding: 4rem 3rem;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.case-headline {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(2.4rem, 4vw, 3.5rem);
+  line-height: 1.05;
+  margin: 0.75rem 0 1rem;
+  color: var(--black);
+}
+.case-headline em {
+  font-style: italic;
+  color: var(--gold);
+}
+.case-hint {
+  font-size: 0.78rem;
+  color: var(--mid);
+  letter-spacing: 0.04em;
+}
+.case-right {
+  padding: 4rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.case-input-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.case-input {
+  width: 100%;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--black);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  padding: 1rem 1.1rem;
+  resize: none;
+  line-height: 1.6;
+  transition: border-color 0.2s;
+  outline: none;
+}
+.case-input:focus {
+  border-color: var(--black);
+}
+.case-input::placeholder { color: var(--muted); }
+@keyframes shakeInput {
+  0%,100% { transform: translateX(0); }
+  20%     { transform: translateX(-6px); }
+  40%     { transform: translateX(6px); }
+  60%     { transform: translateX(-4px); }
+  80%     { transform: translateX(4px); }
+}
+.case-input.shake-input { animation: shakeInput 0.4s ease; border-color: #c0392b; }
+
+.case-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.char-count {
+  font-size: 0.65rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+
+.case-response {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s, transform 0.5s;
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  border-radius: 2px;
+}
+.case-response.visible { opacity: 1; transform: translateY(0); }
+.case-verdict-line {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.case-verdict-label {
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  color: var(--mid);
+}
+.case-verdict-emoji { font-size: 1.3rem; }
+.case-verdict-text {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 0.4rem;
+  line-height: 1.2;
+}
+.case-verdict-reason {
+  font-size: 0.83rem;
+  color: var(--mid);
+  line-height: 1.55;
+}
+
+/* dark state overrides for new sections */
+body.is-yes .fun-btn            { color: #ececec; border-color: #444; }
+body.is-yes .fun-btn:hover      { background: #ececec; color: #1c1c1c; border-color: #ececec; }
+body.is-yes .fun-btn.active     { background: var(--gold); border-color: var(--gold); color: #1c1c1c; }
+body.is-yes .section-sub        { color: #888; }
+body.is-yes .instant-answer     { color: #ececec; }
+body.is-yes .instant-sub        { color: #888; }
+body.is-yes .case-headline      { color: #ececec; }
+body.is-yes .case-hint          { color: #888; }
+body.is-yes .case-input         { color: #ececec; border-color: #444; }
+body.is-yes .case-input:focus   { border-color: #ececec; }
+body.is-yes .case-input::placeholder { color: #666; }
+body.is-yes .case-response      { border-color: #444; }
+body.is-yes .case-verdict-text  { color: #ececec; }
+body.is-yes .case-verdict-reason { color: #888; }
+body.is-yes .case-section       { border-color: #383838; }
+body.is-yes .case-left          { border-color: #383838; }
+body.is-yes .instant-section    { border-color: #383838; }
+
+/* mobile */
+@media (max-width: 768px) {
+  .instant-inner { padding: 2.5rem 1.5rem; }
+  .case-section  { grid-template-columns: 1fr; }
+  .case-left     { padding: 2.5rem 1.5rem; border-right: none; border-bottom: 1px solid var(--border); }
+  .case-right    { padding: 2.5rem 1.5rem; }
+}
+
 /* ── Scrolling strip ── */
 .strip {
   display: flex;

@@ -18,16 +18,17 @@
   </header>
 
   <main>
+    <!-- Hero -->
     <section class="hero">
       <div class="hero-left">
         <p class="eyebrow" id="currentDay">FRIDAY · AMSTERDAM</p>
-        <h1 class="headline" id="mainHeadline">
+        <h1 class="headline">
           Is it<br /><em>already time</em><br />for a<br />Beer?
         </h1>
         <div class="divider"></div>
-        <div class="answer-block" id="answerBlock">
+        <div class="answer-block">
           <p class="answer-text" id="answerText"></p>
-          <p class="answer-sub" id="answerSub"></p>
+          <p class="answer-sub"  id="answerSub"></p>
         </div>
         <button class="cta-btn" id="checkBtn">
           <span>CHECK NOW</span>
@@ -56,7 +57,7 @@
             </div>
           </div>
         </div>
-        <div class="badge-wrap" id="badgeWrap">
+        <div class="badge-wrap">
           <div class="verdict-badge" id="verdictBadge">
             <span id="badgeText">—</span>
           </div>
@@ -64,7 +65,59 @@
       </div>
     </section>
 
-    <section class="strip" id="strip">
+    <!-- Instant verdict buttons -->
+    <section class="instant-section">
+      <div class="instant-inner">
+        <p class="section-eyebrow">INSTANT VERDICT</p>
+        <p class="section-sub">What's your situation?</p>
+        <div class="fun-btns">
+          <button class="fun-btn" data-reason="meeting">😮‍💨 Survived a meeting</button>
+          <button class="fun-btn" data-reason="monday">😩 It's Monday</button>
+          <button class="fun-btn" data-reason="boss">😅 My boss CC'd me</button>
+          <button class="fun-btn" data-reason="friday">🎉 It's Friday</button>
+          <button class="fun-btn" data-reason="liver">🤔 Ask my liver</button>
+          <button class="fun-btn" data-reason="overtime">⏰ I'm doing overtime</button>
+          <button class="fun-btn" data-reason="excel">📊 I had to fix Excel</button>
+          <button class="fun-btn" data-reason="zoom">💻 Another Zoom call</button>
+        </div>
+        <div class="instant-response" id="instantResponse">
+          <p class="instant-answer" id="instantAnswer"></p>
+          <p class="instant-sub"   id="instantSub"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Make your case -->
+    <section class="case-section">
+      <div class="case-left">
+        <p class="section-eyebrow">MAKE YOUR CASE</p>
+        <h2 class="case-headline">Tell us why<br />you need<br /><em>a beer.</em></h2>
+        <p class="case-hint">Be specific. We have standards.</p>
+      </div>
+      <div class="case-right">
+        <div class="case-input-wrap">
+          <textarea id="caseInput" class="case-input" placeholder="e.g. I sat through a 3-hour retrospective about why our retrospectives are too long..." maxlength="280" rows="4"></textarea>
+          <div class="case-actions">
+            <span class="char-count" id="charCount">0 / 280</span>
+            <button class="cta-btn" id="caseSubmit">
+              <span>SUBMIT CASE</span>
+              <svg width="18" height="10" viewBox="0 0 18 10" fill="none"><path d="M1 5h16M13 1l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="case-response" id="caseResponse">
+          <div class="case-verdict-line">
+            <span class="case-verdict-label">VERDICT</span>
+            <span class="case-verdict-emoji" id="caseEmoji"></span>
+          </div>
+          <p class="case-verdict-text"  id="caseVerdict"></p>
+          <p class="case-verdict-reason" id="caseReason"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marquee strip -->
+    <section class="strip">
       <span>CHEERS</span><span>·</span>
       <span>PROOST</span><span>·</span>
       <span>PROST</span><span>·</span>
@@ -79,6 +132,7 @@
       <span>KANPAI</span><span>·</span>
     </section>
 
+    <!-- Stats -->
     <section class="facts">
       <div class="fact-item">
         <p class="fact-num">100%</p>
