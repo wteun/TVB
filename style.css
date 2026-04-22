@@ -179,12 +179,6 @@ main { flex: 1; }
   align-items: baseline;
   margin-bottom: 2rem;
 }
-.schedule-label {
-  font-size: 0.62rem;
-  font-weight: 500;
-  letter-spacing: 0.28em;
-  color: var(--mid);
-}
 .schedule-date {
   font-family: var(--serif);
   font-style: italic;
@@ -378,13 +372,14 @@ main { flex: 1; }
 .instant-inner {
   padding: 3.5rem 3rem;
 }
-.section-eyebrow {
+.section-eyebrow,
+.schedule-label {
   font-size: 0.62rem;
   font-weight: 500;
   letter-spacing: 0.28em;
   color: var(--mid);
-  margin-bottom: 0.5rem;
 }
+.section-eyebrow { margin-bottom: 0.5rem; }
 .section-sub {
   font-family: var(--serif);
   font-style: italic;
