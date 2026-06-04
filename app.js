@@ -331,19 +331,22 @@ function getAmsterdamHMS() {
 
 function updateCountdown() {
   const { h, m, s } = getAmsterdamHMS();
-  const nowSecs    = h * 3600 + m * 60 + s;
-  const targetSecs = 17 * 3600;
-  let diff = targetSecs - nowSecs;
 
-  if (diff <= 0) {
+  // Between 17:00–18:00 — celebrate, don't count
+  if (h === 17) {
     countdownLabel.textContent = "IT'S BEER O'CLOCK 🍺";
-    countdownTime.textContent  = '00:00:00';
+    countdownTime.textContent  = '🍺🍺🍺';
     countdownBlock.classList.add('countdown--done');
     return;
   }
 
   countdownBlock.classList.remove('countdown--done');
   countdownLabel.textContent = "BEER O'CLOCK IN";
+
+  const nowSecs    = h * 3600 + m * 60 + s;
+  const targetSecs = 17 * 3600;
+  let diff = targetSecs - nowSecs;
+  if (diff <= 0) diff += 24 * 3600; // count to tomorrow's 17:00
 
   const hh = Math.floor(diff / 3600);
   const mm = Math.floor((diff % 3600) / 60);

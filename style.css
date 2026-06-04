@@ -358,7 +358,7 @@ main { flex: 1; }
   transition: color 0.4s;
 }
 .countdown--done .countdown-label { color: var(--gold); letter-spacing: 0.15em; }
-.countdown--done .countdown-time  { color: var(--gold); }
+.countdown--done .countdown-time  { color: var(--gold); font-size: clamp(1.8rem, 3.5vw, 2.8rem); letter-spacing: 0.1em; }
 
 body.is-yes .countdown-block  { border-color: #383838; }
 body.is-yes .countdown-time   { color: #ececec; }
