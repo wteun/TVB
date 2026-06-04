@@ -333,6 +333,38 @@ main { flex: 1; }
   transition: letter-spacing 0.2s;
 }
 
+/* ── Countdown ── */
+.countdown-block {
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.countdown-label {
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  color: var(--mid);
+  margin-bottom: 0.4rem;
+  transition: color 0.4s;
+}
+.countdown-time {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  line-height: 1;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+  color: var(--black);
+  transition: color 0.4s;
+}
+.countdown--done .countdown-label { color: var(--gold); letter-spacing: 0.15em; }
+.countdown--done .countdown-time  { color: var(--gold); }
+
+body.is-yes .countdown-block  { border-color: #383838; }
+body.is-yes .countdown-time   { color: #ececec; }
+body.is-yes .countdown--done .countdown-time  { color: var(--gold); }
+body.is-yes .countdown--done .countdown-label { color: var(--gold); }
+
 /* ── Verdict badge ── */
 .badge-wrap {
   display: flex;

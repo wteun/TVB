@@ -311,9 +311,52 @@ caseInput.addEventListener('keydown', e => {
   if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') judgeCase();
 });
 
+// ── Countdown to 17:00 Amsterdam ─────────────────────────────
+
+const countdownBlock = document.getElementById('countdownBlock');
+const countdownLabel = document.getElementById('countdownLabel');
+const countdownTime  = document.getElementById('countdownTime');
+
+function getAmsterdamHMS() {
+  const parts = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Europe/Amsterdam',
+    hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false,
+  }).formatToParts(new Date());
+  return {
+    h: +parts.find(p => p.type === 'hour').value,
+    m: +parts.find(p => p.type === 'minute').value,
+    s: +parts.find(p => p.type === 'second').value,
+  };
+}
+
+function updateCountdown() {
+  const { h, m, s } = getAmsterdamHMS();
+  const nowSecs    = h * 3600 + m * 60 + s;
+  const targetSecs = 17 * 3600;
+  let diff = targetSecs - nowSecs;
+
+  if (diff <= 0) {
+    countdownLabel.textContent = "IT'S BEER O'CLOCK 🍺";
+    countdownTime.textContent  = '00:00:00';
+    countdownBlock.classList.add('countdown--done');
+    return;
+  }
+
+  countdownBlock.classList.remove('countdown--done');
+  countdownLabel.textContent = "BEER O'CLOCK IN";
+
+  const hh = Math.floor(diff / 3600);
+  const mm = Math.floor((diff % 3600) / 60);
+  const ss = diff % 60;
+  const pad = n => String(n).padStart(2, '0');
+  countdownTime.textContent = `${pad(hh)}:${pad(mm)}:${pad(ss)}`;
+}
+
 // ── Init ─────────────────────────────────────────────────────
 
 updateDay();
 updateActiveSlot();
+updateCountdown();
 setInterval(updateActiveSlot, 30 * 1000);
+setInterval(updateCountdown, 1000);
 window.addEventListener('load', () => setTimeout(checkBeer, 300));
