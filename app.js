@@ -138,7 +138,7 @@ function minutesNow() {
   return n.getHours() * 60 + n.getMinutes();
 }
 function inSlot(slot) { const m = minutesNow(); return m >= slot.start && m < slot.end; }
-function isBeerTime() { return inSlot(SLOTS.beer); }
+function isBeerTime() { return true; }
 function pick(arr)    { return arr[Math.floor(Math.random() * arr.length)]; }
 
 // ── DOM ──────────────────────────────────────────────────────
@@ -219,13 +219,7 @@ function showHeroResult(yes, msg) {
 }
 
 function checkBeer() {
-  const yes = isBeerTime();
-  let msg;
-  if (yes)                         msg = pick(YES_MESSAGES);
-  else if (inSlot(SLOTS.lunch))    msg = pick(LUNCH_MESSAGES);
-  else if (inSlot(SLOTS.pingpong)) msg = pick(PING_PONG_MESSAGES);
-  else                             msg = pick(WAIT_MESSAGES);
-  showHeroResult(yes, msg);
+  showHeroResult(true, pick(YES_MESSAGES));
 }
 
 document.getElementById('checkBtn').addEventListener('click', checkBeer);
@@ -330,29 +324,9 @@ function getAmsterdamHMS() {
 }
 
 function updateCountdown() {
-  const { h, m, s } = getAmsterdamHMS();
-
-  // Between 17:00–18:00 — celebrate, don't count
-  if (h === 17) {
-    countdownLabel.textContent = "IT'S BEER O'CLOCK 🍺";
-    countdownTime.textContent  = '🍺🍺🍺';
-    countdownBlock.classList.add('countdown--done');
-    return;
-  }
-
-  countdownBlock.classList.remove('countdown--done');
-  countdownLabel.textContent = "BEER O'CLOCK IN";
-
-  const nowSecs    = h * 3600 + m * 60 + s;
-  const targetSecs = 17 * 3600;
-  let diff = targetSecs - nowSecs;
-  if (diff <= 0) diff += 24 * 3600; // count to tomorrow's 17:00
-
-  const hh = Math.floor(diff / 3600);
-  const mm = Math.floor((diff % 3600) / 60);
-  const ss = diff % 60;
-  const pad = n => String(n).padStart(2, '0');
-  countdownTime.textContent = `${pad(hh)}:${pad(mm)}:${pad(ss)}`;
+  countdownLabel.textContent = "IT'S ALWAYS BEER O'CLOCK";
+  countdownTime.textContent  = '🍺🍺🍺';
+  countdownBlock.classList.add('countdown--done');
 }
 
 // ── Init ─────────────────────────────────────────────────────
